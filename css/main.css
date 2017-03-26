@@ -1,6 +1,6 @@
 body{
   margin: 0;
-  background: url(https://wallpaperscraft.com/image/board_black_line_texture_background_wood_55220_2560x1600.jpg)
+  color:#fefefe;
 }
 
 .wrapper{
@@ -52,8 +52,7 @@ body{
   background-color: #4969b3;
   display: flex;
   align-items: center;
-  padding-left: 10%;
-  padding-right: 8%;
+  padding: 10px auto;
 }
 
 .nav-btn>a:hover {
@@ -75,7 +74,7 @@ body{
 }
 
 .movie{
-  color: white;
+  color: #fefefe;
   width:150px;
   height:225px;
   background: #2574A9;
@@ -96,10 +95,6 @@ body{
   box-shadow: -7px 7px 46px -9px rgba(0,0,0,0.75);
 }
 
-h1{
-  color: white;
-}
-
 /** Search Movie Container**/
 
 .container-search{
@@ -115,7 +110,7 @@ h1{
 .container-search-item{
   margin-top: 10px;
   margin-bottom: 10px;
-  color: white;
+  color: #fefefe;
   font-size: 20px;
   margin: 30px;
 }
@@ -130,7 +125,7 @@ h1{
 .heading{
   margin-left: 1.5%;
   padding-top: 2%;
-  font-size: 70px;
+  font-size: 50px;
 }
 /*Checkout Container*/
 .container-checkout {
@@ -141,7 +136,54 @@ h1{
 }
 
 .checkout-movie{
- color:white;
+ color:#fefefe;
  border: 10px solid #999;
  margin: 1% 2%;
+}
+
+/** Modal Region**/
+.modal-blocker {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.3);
+}
+
+.modal-container {
+    background-color: grey;
+    color:black;
+    flex-wrap: wrap;
+    margin: 15% auto;
+    border-radius: 2px;
+    width: 80%;
+    display: flex;
+
+}
+
+.modal-container-image{
+  width: 300px;
+  height: 450px;
+  /*border: solid blue;*/
+  margin-left: 15%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  flex: 1;
+}
+
+.modal-container-image img{
+  width:300px;
+  height: 450px;
+}
+
+.modal-container-info{
+  flex: 5;
+  /*border: solid pink;*/
+  color:white;
+  padding: 5%;
+  font-family: sans-serif;
+  background-color: grey;
 }
