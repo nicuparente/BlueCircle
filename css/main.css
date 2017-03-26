@@ -1,0 +1,114 @@
+.body{
+  margin: 0;
+}
+
+.wrapper{
+  background: linear-gradient(to left, #4b6cb7 , #182848);
+  font-family: 'Roboto', sans-serif;
+  border: none;
+}
+
+/** Navigation Bar**/
+.navbar {
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 2%;
+  align-items: flex-start;
+}
+
+.nav-logo{
+  margin-left: 3%;
+  margin-top: 20px;
+  width: 278px;
+  height: 348px;
+  border-style:solid;
+}
+
+.navbar:nth-child(2){
+  margin-left: 50%;
+}
+.nav-btn{
+  border-color: white;
+  border-style:solid;
+  text-align:center;
+  font-size: 30px;
+  margin: 20px;
+  height: 80px;
+}
+
+
+/** Movie Container **/
+.container-movies {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  background: rgba(255,255,255,0.05);
+  margin-left:2%;
+  margin-right:2%;
+  margin-top: 1%;
+  margin-bottom:10%;
+}
+
+.movie{
+  color: white;
+  width:150px;
+  height:225px;
+  background: #2574A9;
+  text-align: center;
+  font-size: 120px;
+  font-weight: bold;
+  margin: .8%;
+  transition: all .2s ease-in-out;
+}
+
+.movie img{
+  height: 100%;
+  width: 100%;
+}
+
+.movie:hover {
+  transform: scale(1.2);
+  box-shadow: -7px 7px 46px -9px rgba(0,0,0,0.75);
+}
+
+h1{
+  color: white;
+}
+
+/** Search Movie Container**/
+
+.container-search{
+  width: 100%;
+  height: 400px;
+}
+
+.container-search-item{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: white;
+  font-size: 20px;
+  margin: 30px;
+}
+
+.search-bar{
+  width:80%;
+  height:40px;
+  font-size: 30px;
+  color: black;
+
+}
+
+/*Checkout Container*/
+.container-checkout {
+  background-color: black;
+  font-size: 100px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.checkout-movie{
+ color:white;
+ border: 10px solid #999;
+ margin: 1% 2%;
+}
