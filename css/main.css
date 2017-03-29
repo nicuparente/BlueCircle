@@ -99,7 +99,6 @@ body{
 }
 
 /** Search Movie Container Region**/
-
 .container-search{
   width: 80%;
   margin-left: 10%;
@@ -127,11 +126,19 @@ body{
 }
 
 .heading{
-  margin-left: 5% ;
-  padding-top: 400px;
+  margin-left: 5%;
+  font-weight: 900px;
+  margin-top: 400px;
+  margin-right: 5%;
+  padding-left: 30px;
+  padding-right: 30px;
+  display: inline-block;
   font-size: 100px;
+  background-color: white;
+  border-radius: 2px;
+  color:black;
 }
-/*Checkout Container Region*/
+/*Checkout Container Region */
 .container-checkout {
   background-color: black;
   font-size: 100px;
@@ -225,9 +232,33 @@ body{
 
 .movie-title{
   font-size: 60px;
+  font-weight: 800;
+  background-color: white;
+  border-radius: 2px;
+  color:black;
+  display: inline;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 15% auto;
   text-transform: uppercase;
 }
 
+.info-heading {
+  background-color: white;
+  display: inline;
+  color:black;
+  border-radius: 2px;
+  font-weight: 900;
+  font-size: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.modal-container-info p {
+  font-size: 18px;
+  padding-left: 10px;
+  margin-bottom: 25px;
+}
 .imdbID {
   display:none;
 }
