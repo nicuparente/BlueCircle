@@ -14,9 +14,12 @@ body{
   color: white;
   display: flex;
   height:100px;
-  margin-bottom: 500px;
+  width: 100%;
   align-items: flex-start;
   background: #4969b3;
+  position: fixed;
+  z-index: 1;
+  top: 0;
 }
 
 .nav-logo{
@@ -67,7 +70,7 @@ body{
   background: rgba(255,255,255,0.05);
   margin-left:2%;
   margin-right:2%;
-  margin-top: 1%;
+  margin-top: 5%;
   margin-bottom:10%;
   padding: 10px;
   border-radius: 5px;
@@ -124,9 +127,9 @@ body{
 }
 
 .heading{
-  margin-left: 1.5%;
-  padding-top: 2%;
-  font-size: 50px;
+  margin-left: 5% ;
+  padding-top: 500px;
+  font-size: 100px;
 }
 /*Checkout Container Region*/
 .container-checkout {
@@ -149,16 +152,17 @@ body{
     z-index: 1;
     left: 0;
     top: 0;
-    overflow: visible;
+    overflow: auto;
     width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,0.7);
 }
 
 .modal-container {
+    background-color: rgba(255,255,255,0.1);
     color:black;
     flex-wrap: wrap;
-    margin: 15% auto;
+    margin: 10% auto;
     border-radius: 2px;
     width: 80%;
     display: flex;
@@ -169,10 +173,7 @@ body{
   width: 300px;
   height: 450px;
   /*border: solid blue;*/
-  margin-left: 15%;
-  padding-right: 5%;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin:  20px 5%;
   flex: 1;
 }
 
@@ -229,4 +230,16 @@ body{
 
 .imdbID {
   display:none;
+}
+
+.message {
+  font-size: 80px;
+}
+
+.error{
+  font-color: maroon;
+}
+
+.success{
+  font-color: green;
 }
