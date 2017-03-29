@@ -1,33 +1,29 @@
 /**
 TODO:
-1. Local Storage for Name, Email Checked out items.
-2. Dynamically populate modal based on selected movie based json values /
-3. Create a checkout modal
-4. Hook up find a movie now to OMDB endpoint
-5. About page
+1. Hook up find a movie now to OMDB endpoint
 **/
 
-var movies = document.getElementsByClassName('movie');
+//Getting the html elements
 var modal = document.getElementById('movieInfo');
+var movieCounterNav = document.getElementById('movieCounterNav');
+var movies = document.getElementsByClassName('movie');
+var modalContainer = document.getElementsByClassName('modal-container')[0];
 var moviesContainer = document.getElementsByClassName('container-movies')[0];
+var modalBackButton = document.getElementsByClassName('back')[0];
+var modalRentButton = document.getElementsByClassName('rent')[0];
+var checkoutContainer = document.getElementsByClassName('container-checkout')[0];
+var messagesContainer = document.getElementById('message');
 var availableMovies = {};
-var checkedOutMovies = {};
-
-if(!localStorage.checkedOutMovies)
-  localStorage.checkedOutMovies= {};
-
-if(!localStorage.availableMovies)
-  localStorage.availableMovies = {};
 
 
 //Functions
 function bulkListenerAddMovie(movieElem){
-  movieElem.addEventListener("click", function () {
+     movieElem.addEventListener("click", function () {
      modal.style.display = "block";
      console.log (this.id);
      modifyModalElement(availableMovies[this.id])
      localStorage.isMovieModalOpen = "true";
-  })
+  });
 }
 
 function modifyModalElement(movie){
@@ -36,6 +32,9 @@ function modifyModalElement(movie){
     document.getElementsByClassName('movie-plot')[0].innerHTML  = movie.plot;
     document.getElementsByClassName('movie-cast')[0].innerHTML  = movie.actors;
     document.getElementsByClassName('released-date')[0].innerHTML  = movie.release;
+
+    var lModalMovieInf = JSON.stringify(movie);
+    localStorage.modalMovieInfo = lModalMovieInf;
 }
 
 function httpClient(protocol, url, callback){
@@ -70,35 +69,103 @@ function createMovieElement(movie, callback){
   callback.apply(movDiv);
 }
 
-//Add listeners to movies
-for(var idNum = 0; idNum <= movies.length-1; idNum++){
-  var movie = movies[idNum]
-  bulkListenerAddMovie(movie);
+function fadeIfRented(mID){
+  document.getElementById(mID).style.opacity = 0.5;
+}
+
+function updateCheckoutCounterElement(){
+  movieCounterNav.innerHTML = ": " + JSON.parse(localStorage.checkedOutMovies).length;
+}
+
+function closeModal(){
+  modal.style.display = "none";
+  localStorage.isMovieModalOpen = "false";
+}
+
+function succesfullyRented(movTitle){
+  alert('Successfully rented "'+ movTitle + '" !');
+  updateCheckoutCounterElement();
+  fadeIfRented(movTitle);
+}
+
+function rentMovie(movieSelected){
+  var lCheckedOutMovies = localStorage.checkedOutMovies;
+
+  if( lCheckedOutMovies === '[]' || !lCheckedOutMovies){
+    lCheckedOutMovies = [movieSelected.title];
+    localStorage.checkedOutMovies = JSON.stringify(lCheckedOutMovies);
+    succesfullyRented(movieSelected.title);
+  }
+  else{
+      lCheckedOutMovies = JSON.parse(lCheckedOutMovies);
+      if(!lCheckedOutMovies.includes(movieSelected.title)){
+        lCheckedOutMovies.push(movieSelected.title);
+        localStorage.checkedOutMovies = JSON.stringify(lCheckedOutMovies);
+        succesfullyRented(movieSelected.title);
+        closeModal();
+      }
+      else{
+        alert("Movie is already checked out! Select another movie!");
+        fadeIfRented(movieSelected.title);
+        closeModal();
+      }
+  }
 }
 
 
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-        localStorage.isMovieModalOpen = "false";
-    }
-}
+//Add Event listeners
+modalBackButton.addEventListener('click', closeModal);
+
+window.addEventListener('click', function(){
+  if(event.target === modal){
+    closeModal();
+  }
+});
+
+modalRentButton.addEventListener('click', function(){
+   var rentMovieTitle = document.getElementsByClassName('movie-title')[0].innerHTML;
+   rentMovie(availableMovies[rentMovieTitle]);
+});
 
 
-
+//When page loads or reloads
 window.onload = function loadDoc() {
-  httpClient("GET","data/recommendations.json",function(){
 
+  //Check if modal was open before reloading the page
+  if(localStorage.isMovieModalOpen == 'true'){
+    var lModalMovieInfo = JSON.parse(localStorage.modalMovieInfo);
+    modifyModalElement(lModalMovieInfo);
+    modal.style.display = "block";
+  }
+
+  //Render Movies
+  httpClient("GET","data/movieList.json",function(){
     var movieRecommendations = JSON.parse(this.response);
 
+    //iterates to movies
     for(var index in movieRecommendations){
-         var newMovie = new movie(movieRecommendations[index].Title,movieRecommendations[index].Poster,movieRecommendations[index].imdbID, movieRecommendations[index].Actors, movieRecommendations[index].Released, movieRecommendations[index].Plot);
+
+         var movieRecommendationsItem = movieRecommendations[index];
+         var newMovie = new movie(movieRecommendationsItem.Title, movieRecommendationsItem.Poster,movieRecommendationsItem.imdbID, movieRecommendationsItem.Actors, movieRecommendationsItem.Released, movieRecommendationsItem.Plot);
+
          availableMovies[newMovie.title] = newMovie;
-         createMovieElement(movieRecommendations[index], function(){
+
+         //Populate movies container with movie elements
+         createMovieElement(movieRecommendationsItem, function(){
+           if(localStorage.checkedOutMovies){
+
+             var checkoutMovieList =  JSON.parse(localStorage.checkedOutMovies);
+
+             if(checkoutMovieList.includes(this.id))
+              this.style.opacity = 0.5
+
+           }
            moviesContainer.appendChild(this);
          });
+    }
 
-
+    if(localStorage.checkedOutMovies){
+      updateCheckoutCounterElement();
     }
   });
 }

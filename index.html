@@ -12,17 +12,20 @@
         <div class="nav-item">
           <img class="nav-logo" src="https://raw.githubusercontent.com/nicuparente/BlueCircle/master/images/BlueCircleLogo.png">
         </div>
-         <div class="nav-item">
-             <div class="nav-btn"><a href="#search" >SEARCH</a></div>
-             <div  class="nav-btn"><a href="#about">ABOUT</a></div>
-         </div>
+        <div class="nav-item">
+             <!-- <div class="nav-btn"><a href="#search">SEARCH</a></div> -->
+             <div class="nav-btn"><a>Movies Rented <span id="movieCounterNav">:0</span></a></div>
+        </div>
 
       </div>
 
-      <h1 class="heading">Movie Recommendations</h1>
+      <div>
+        <h1 class="heading">MOVIE TITLES</h1>
+      </div>
       <div class="container-movies">
       </div>
 
+      <!-- Comment cout for now hook up later
       <div id="search" class="container-search">
           <div class="container-search-item">
             <h1 class="heading"> Find a movie now!</h1>
@@ -30,31 +33,25 @@
           <div class="container-search-item">
             <input class=" search-bar container-search-item" type="text"  placeholder="Enter a movie name...."/>
           </div>
-      </div>
-      <div class="container-checkout" id="about">
-        <div class="checkout-movie">X</div>
-        <div class="checkout-movie">X</div>
-        <div class="checkout-movie">X</div>
-        <div class="checkout-movie">X</div>
+      </div> -->
+      <div class="container-checkout" id="checkout">
       </div>
     </div>
 
     <div id="movieInfo" class="modal-blocker">
       <div class="modal-container">
         <div class="modal-container-image">
-          <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTk4ODk5MTMyNV5BMl5BanBnXkFtZTcwMDMyNTg0Ng@@._V1_SX300.jpg">
+          <img src="">
         </div>
         <div class="modal-container-info">
           <div class="modal-container-info-description">
-            <h1 class="movie-title">Warrior</h2>
-            <p class="imdbID">tt1291584</p>
-            <p class="movie-plot">
-              <br /> The youngest son of an alcoholic former boxer returns home, where he's trained by his father for competition in a mixed martial arts tournament - a path that puts the fighter on a collision course with his estranged, older brother
-            </p>
-            <h3 class="movie-cast-heading">Starring</h3>
-            <p  class="movie-cast">Joel Edgerton, Tom Hardy, Nick Nolte, Jennifer Morrison</p>
-            <h3 class="released-heading">Released</h3>
-            <p  class="released-date">09 Sep 2011</p>
+            <h1 class="movie-title"></h2>
+            <p class="imdbID"></p>
+            <p class="movie-plot"></p>
+            <h3 class="movie-cast-heading"></h3>
+            <p  class="movie-cast"></p>
+            <h3 class="released-heading"></h3>
+            <p  class="released-date"></p>
           </div>
           <div class="modal-container-info-buttons">
             <button class="btn back">BACK</button>
@@ -62,6 +59,13 @@
           </div>
         </div>
       </div>
+    <div id="messages" class="modal-blocker">
+      <div class="modal-container">
+        <div class="message">
+          Hello!
+        </div>
+      </div>
+    </div>
     </div>
     <script src="js/main.js" charset="utf-8"></script>
   </body>
